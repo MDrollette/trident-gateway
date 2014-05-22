@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-0": {
-            "MDrollette\\TridentGateway": "src/"
+            "MDrollette": "src/"
         }
     }
 }

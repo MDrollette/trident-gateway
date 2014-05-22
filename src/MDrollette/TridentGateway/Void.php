@@ -6,7 +6,7 @@ namespace MDrollette\TridentGateway;
 
 class Void extends Transaction
 {
-    function Void($profileId, $profileKey, $tranId)
+    public function __construct($profileId, $profileKey, $tranId)
     {
         $this->Transaction($profileId, $profileKey);
         $this->RequestFields['transaction_id'] = $tranId;

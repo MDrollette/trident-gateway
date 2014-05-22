@@ -4,7 +4,7 @@ namespace MDrollette\TridentGateway;
 
 class PreAuth extends Transaction
 {
-    function PreAuth($profileId = '', $profileKey = '')
+    public function __construct($profileId = '', $profileKey = '')
     {
         $this->Transaction($profileId, $profileKey);
         $this->TranType = "P"; // pre-auth

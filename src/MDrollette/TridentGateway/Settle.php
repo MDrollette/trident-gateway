@@ -4,7 +4,7 @@ namespace MDrollette\TridentGateway;
 
 class Settle extends Transaction
 {
-    function Settle($profileId, $profileKey, $tranId, $settleAmount = 0)
+    public function __construct($profileId, $profileKey, $tranId, $settleAmount = 0)
     {
         $this->Transaction($profileId, $profileKey);
         $this->RequestFields['transaction_id']     = $tranId;

@@ -6,7 +6,7 @@ namespace MDrollette\TridentGateway;
 
 class Sale extends Transaction
 {
-    function Sale($profileId, $profileKey)
+    public function __construct($profileId, $profileKey)
     {
         $this->Transaction($profileId, $profileKey);
         $this->TranType = "D";

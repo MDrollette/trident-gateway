@@ -6,7 +6,7 @@ namespace MDrollette\TridentGateway;
 
 class Refund extends Transaction
 {
-    function Refund($profileId, $profileKey, $tranId)
+    public function __construct($profileId, $profileKey, $tranId)
     {
         $this->Transaction($profileId, $profileKey);
         $this->RequestFields['transaction_id'] = $tranId;

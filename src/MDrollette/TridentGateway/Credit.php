@@ -4,7 +4,7 @@ namespace MDrollette\TridentGateway;
 
 class Credit extends Transaction
 {
-    function Credit($profileId, $profileKey)
+    public function __construct($profileId, $profileKey)
     {
         $this->Transaction($profileId, $profileKey);
         $this->TranType = "C";

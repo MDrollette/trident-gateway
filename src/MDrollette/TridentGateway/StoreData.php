@@ -6,7 +6,7 @@ namespace MDrollette\TridentGateway;
 
 class StoreData extends Transaction
 {
-    function StoreData($profileId, $profileKey)
+    public function __construct($profileId, $profileKey)
     {
         $this->Transaction($profileId, $profileKey);
         $this->TranType = "T";

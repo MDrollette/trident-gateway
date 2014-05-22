@@ -5,7 +5,7 @@ namespace MDrollette\TridentGateway;
 
 class Offline extends Transaction
 {
-    function Offline($profileId, $profileKey, $authCode)
+    public function __construct($profileId, $profileKey, $authCode)
     {
         $this->Transaction($profileId, $profileKey);
         $this->RequestFields['auth_code'] = $authCode;

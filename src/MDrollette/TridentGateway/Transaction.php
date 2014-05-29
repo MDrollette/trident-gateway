@@ -5,7 +5,7 @@ namespace MDrollette\TridentGateway;
 class Transaction
 {
     var $Post = true;
-    var $ApiHost = "https://cert.merchante-solutions.com/mes-api/tridentApi";
+    var $ApiHost = "https://api.merchante-solutions.com/mes-api/tridentApi";
     var $ProxyHost = "";
     var $ProfileId;
     var $ProfileKey;

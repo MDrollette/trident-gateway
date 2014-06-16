@@ -18,4 +18,9 @@ class Refund extends Transaction
         $this->RequestFields['card_id']            = $cardId;
         $this->RequestFields['transaction_amount'] = $amount;
     }
+
+    function setPartialAmount($amount)
+    {
+        $this->RequestFields['transaction_amount'] = $amount;
+    }
 }

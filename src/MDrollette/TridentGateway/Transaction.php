@@ -4,24 +4,24 @@ namespace MDrollette\TridentGateway;
 
 class Transaction
 {
-    var $Post = true;
-    var $ApiHost = "https://api.merchante-solutions.com/mes-api/tridentApi";
-    var $ProxyHost = "";
-    var $ProfileId;
-    var $ProfileKey;
-    var $TranType = "A";
-    var $ApiResponse;
-    var $ErrorMessage;
-    var $ResponseRaw;
-    var $ResponseFields;
-    var $RequestFields;
-    var $RequestFieldNames = array("avs_data", "cardholder_street_address", "cardholder_zip", "cvv2", "transaction_amount", "card_number", "card_exp_date", "transaction_id", "card_present", "reference_number",
+    private $Post = true;
+    private $ApiHost = "https://api.merchante-solutions.com/mes-api/tridentApi";
+    private $ProxyHost = "";
+    private $ProfileId;
+    private $ProfileKey;
+    private $TranType = "A";
+    private $ErrorMessage;
+    private $ResponseRaw;
+    private $ResponseFields;
+    private $RequestFields;
+    private $RequestFieldNames = ["requester_name", "avs_data", "cardholder_street_address", "cardholder_zip", "cvv2", "transaction_amount", "card_number", "card_exp_date", "transaction_id", "card_present", "reference_number",
         "merchant_name", "merchant_city", "merchant_state", "merchant_zip", "merchant_category_code", "merchant_phone",
         "invoice_number", "tax_amount", "ship_to_zip", "moto_ecommerce_ind", "industry_code", "auth_code", "card_id", "country_code",
         "fx_amount", "fx_rate_id", "currency_code", "rctl_product_level", "echo_customfield",
         "3d_payload", "3d_transaction_id", "client_reference_number",
-        "bml_request", "promo_code", "order_num", "order_desc", "amount", "ship_amount", "ip_address", "bill_first_name", "bill_middle_name", "bill_last_name", "bill_addr1", "bill_addr2", "bill_city", "bill_state", "bill_zip", "bill_phone1", "bill_phone2", "bill_email", "ship_first_name", "ship_middle_name", "ship_last_name", "ship_addr1", "ship_addr2", "ship_city", "ship_state", "ship_zip", "ship_phone1", "ship_phone2", "ship_email");
-    var $url;
+        "bml_request", "promo_code", "order_num", "order_desc", "amount", "ship_amount", "ip_address", "bill_first_name", "bill_middle_name", "bill_last_name", "bill_addr1", "bill_addr2", "bill_city", "bill_state", "bill_zip", "bill_phone1", "bill_phone2", "bill_email", "ship_first_name", "ship_middle_name", "ship_last_name", "ship_addr1", "ship_addr2", "ship_city", "ship_state", "ship_zip", "ship_phone1", "ship_phone2", "ship_email"];
+    private $url;
+    private $amexLineItems = [];
 
     function Transaction($profileId = '', $profileKey = '')
     {
@@ -40,6 +40,14 @@ class Transaction
                     $url .= "&" . $fname . "=" . $this->RequestFields[$fname];
                 }
             }
+            // add line items
+            if (count($this->amexLineItems)) {
+                $url .= '&line_item_count=' . count($this->amexLineItems);
+                foreach ($this->amexLineItems as $line) {
+                    $url .= '&amex_line_item=' . $line;
+                }
+            }
+
             $this->url = $url;
 
             $this->processRequest();
@@ -176,4 +184,10 @@ class Transaction
         $this->RequestFields['merchant_category_code'] = $mcc;
         $this->RequestFields['merchant_phone']         = $phone;
     }
+
+    function addAmexLineItem($description, $quantity, $cost)
+    {
+        $this->amexLineItems[] = sprintf('%s<|>%s<|>%s', substr($description, 0, 40), $quantity, $cost);
+    }
 }
+

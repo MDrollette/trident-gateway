@@ -3,7 +3,7 @@
     "description": "Client library for merchant e-solutions trident payment gateway",
     "homepage": "https://github.com/MDrollette/trident-gateway",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "Merchant e-solutions",

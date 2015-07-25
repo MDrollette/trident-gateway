@@ -4,24 +4,24 @@ namespace MDrollette\TridentGateway;
 
 class Transaction
 {
-    private $Post = true;
-    private $ApiHost = "https://api.merchante-solutions.com/mes-api/tridentApi";
-    private $ProxyHost = "";
-    private $ProfileId;
-    private $ProfileKey;
-    private $TranType = "A";
-    private $ErrorMessage;
-    private $ResponseRaw;
-    private $ResponseFields;
-    private $RequestFields;
-    private $RequestFieldNames = ["requester_name", "avs_data", "cardholder_street_address", "cardholder_zip", "cvv2", "transaction_amount", "card_number", "card_exp_date", "transaction_id", "card_present", "reference_number",
+    protected $Post = true;
+    protected $ApiHost = "https://api.merchante-solutions.com/mes-api/tridentApi";
+    protected $ProxyHost = "";
+    protected $ProfileId;
+    protected $ProfileKey;
+    protected $TranType = "A";
+    protected $ErrorMessage;
+    protected $ResponseRaw;
+    protected $ResponseFields;
+    protected $RequestFields;
+    protected $RequestFieldNames = ["requester_name", "avs_data", "cardholder_street_address", "cardholder_zip", "cvv2", "transaction_amount", "card_number", "card_exp_date", "transaction_id", "card_present", "reference_number",
         "merchant_name", "merchant_city", "merchant_state", "merchant_zip", "merchant_category_code", "merchant_phone",
         "invoice_number", "tax_amount", "ship_to_zip", "moto_ecommerce_ind", "industry_code", "auth_code", "card_id", "country_code",
         "fx_amount", "fx_rate_id", "currency_code", "rctl_product_level", "echo_customfield",
         "3d_payload", "3d_transaction_id", "client_reference_number",
         "bml_request", "promo_code", "order_num", "order_desc", "amount", "ship_amount", "ip_address", "bill_first_name", "bill_middle_name", "bill_last_name", "bill_addr1", "bill_addr2", "bill_city", "bill_state", "bill_zip", "bill_phone1", "bill_phone2", "bill_email", "ship_first_name", "ship_middle_name", "ship_last_name", "ship_addr1", "ship_addr2", "ship_city", "ship_state", "ship_zip", "ship_phone1", "ship_phone2", "ship_email"];
-    private $url;
-    private $amexLineItems = [];
+    protected $url;
+    protected $amexLineItems = [];
 
     function Transaction($profileId = '', $profileKey = '')
     {
@@ -61,7 +61,7 @@ class Transaction
             $retVal = $this->ResponseFields[$fieldName];
         }
 
-        return ($retVal);
+        return $retVal;
     }
 
     function isApproved()
